@@ -1,0 +1,2691 @@
+{
+    "bootstrap.py": {
+        "lines": 205,
+        "classes": [],
+        "functions": [
+            "create_directories",
+            "create_init_files",
+            "create_files",
+            "create_database",
+            "main"
+        ],
+        "methods": {},
+        "imports": [
+            "json",
+            "pathlib"
+        ]
+    },
+    "Dircheck.py": {
+        "lines": 164,
+        "classes": [],
+        "functions": [
+            "analyze_python",
+            "build_tree"
+        ],
+        "methods": {},
+        "imports": [
+            "ast",
+            "json",
+            "pathlib"
+        ]
+    },
+    "launcher.py": {
+        "lines": 20,
+        "classes": [],
+        "functions": [
+            "main"
+        ],
+        "methods": {},
+        "imports": [
+            "src.core.application",
+            "sys"
+        ]
+    },
+    "test.py": {
+        "lines": 12,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": [
+            "src.models.elements"
+        ]
+    },
+    "src\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\academic_theme.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\base_theme.py": {
+        "lines": 313,
+        "classes": [
+            "BaseTheme"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseTheme": [
+                "__post_init__",
+                "apply_defaults",
+                "copy",
+                "text_style",
+                "to_dict",
+                "from_dict",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "src.models.styles.text_style"
+        ]
+    },
+    "themes\\corporate_theme.py": {
+        "lines": 244,
+        "classes": [
+            "CorporateTheme"
+        ],
+        "functions": [],
+        "methods": {
+            "CorporateTheme": [
+                "__init__",
+                "apply_defaults",
+                "primary_color",
+                "secondary_color",
+                "accent_color",
+                "text_color",
+                "background_color",
+                "footer_color",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "themes.base_theme"
+        ]
+    },
+    "themes\\dark_theme.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\financial_theme.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\medical_theme.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\minimal_theme.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\modern_theme.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "themes\\theme_manager.py": {
+        "lines": 264,
+        "classes": [
+            "ThemeManager"
+        ],
+        "functions": [],
+        "methods": {
+            "ThemeManager": [
+                "__init__",
+                "register",
+                "unregister",
+                "theme",
+                "has_theme",
+                "current",
+                "set_current",
+                "current_name",
+                "names",
+                "copy_current",
+                "clear",
+                "__len__",
+                "__contains__",
+                "__iter__",
+                "__repr__",
+                "all"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "themes.base_theme"
+        ]
+    },
+    "src\\ai\\ai_client.py": {
+        "lines": 114,
+        "classes": [
+            "AIClient"
+        ],
+        "functions": [],
+        "methods": {
+            "AIClient": [
+                "__init__",
+                "current_provider",
+                "generate",
+                "generate_with",
+                "available_providers",
+                "set_provider",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.ai.prompt_builder",
+            "src.ai.providers.provider_manager"
+        ]
+    },
+    "src\\ai\\content_writer.py": {
+        "lines": 397,
+        "classes": [
+            "ContentWriter"
+        ],
+        "functions": [],
+        "methods": {
+            "ContentWriter": [
+                "write",
+                "_build_slide",
+                "_build_title",
+                "_build_subtitle",
+                "_build_bullets",
+                "_build_notes",
+                "_build_summary",
+                "_extract_keywords",
+                "_build_keywords",
+                "_cleanup",
+                "_truncate"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.models.draft_slide",
+            "src.models.presentation_draft",
+            "src.models.presentation_plan"
+        ]
+    },
+    "src\\ai\\layout_registry.py": {
+        "lines": 248,
+        "classes": [
+            "LayoutRegistry"
+        ],
+        "functions": [],
+        "methods": {
+            "LayoutRegistry": [
+                "__init__",
+                "register",
+                "unregister",
+                "has_builder",
+                "builder",
+                "find_builder",
+                "builders",
+                "names",
+                "clear",
+                "__len__",
+                "__contains__",
+                "__iter__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.layouts.base_layout_builder",
+            "src.models.planned_slide"
+        ]
+    },
+    "src\\ai\\presentation_planner.py": {
+        "lines": 550,
+        "classes": [
+            "PresentationPlanner"
+        ],
+        "functions": [],
+        "methods": {
+            "PresentationPlanner": [
+                "build_plan",
+                "_parse_json",
+                "_safe_list",
+                "_normalize_text",
+                "_build_slide",
+                "_normalize_bullets",
+                "_detect_image",
+                "_detect_chart",
+                "_detect_table",
+                "_estimate_bullets",
+                "_choose_layout",
+                "_normalize_layout"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "json",
+            "src.models.planned_slide",
+            "src.models.presentation_plan"
+        ]
+    },
+    "src\\ai\\prompt_builder.py": {
+        "lines": 452,
+        "classes": [
+            "PromptBundle",
+            "PromptBuilder"
+        ],
+        "functions": [],
+        "methods": {
+            "PromptBundle": [],
+            "PromptBuilder": [
+                "build",
+                "build_system_prompt",
+                "build_user_prompt",
+                "build_output_format",
+                "build_messages",
+                "__call__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "src.ai.prompt_request"
+        ]
+    },
+    "src\\ai\\prompt_request.py": {
+        "lines": 186,
+        "classes": [
+            "PromptRequest"
+        ],
+        "functions": [],
+        "methods": {
+            "PromptRequest": [
+                "is_auto_provider",
+                "online_enabled",
+                "has_notes",
+                "has_audience",
+                "copy",
+                "__post_init__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses"
+        ]
+    },
+    "src\\ai\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\assets\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\builders\\slide_builder.py": {
+        "lines": 102,
+        "classes": [
+            "SlideBuilder"
+        ],
+        "functions": [],
+        "methods": {
+            "SlideBuilder": [
+                "build"
+            ]
+        },
+        "imports": [
+            "src.models.elements.image_element",
+            "src.models.elements.text_element",
+            "src.models.slide"
+        ]
+    },
+    "src\\config\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\core\\application.py": {
+        "lines": 378,
+        "classes": [
+            "Application"
+        ],
+        "functions": [],
+        "methods": {
+            "Application": [
+                "__init__",
+                "initialize",
+                "run",
+                "shutdown",
+                "register_ai_providers"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "src.ai.ai_client",
+            "src.ai.providers.fake_ai_provider",
+            "src.ai.providers.provider_manager",
+            "src.core.container",
+            "src.core.event_bus",
+            "src.database.database_service",
+            "src.repositories.element_repository",
+            "src.repositories.project_repository",
+            "src.repositories.slide_repository",
+            "src.services.config_service",
+            "src.services.element_service",
+            "src.services.export_service",
+            "src.services.language_service",
+            "src.services.layout_engine",
+            "src.services.logger_service",
+            "src.services.presentation_service",
+            "src.services.project_service",
+            "src.services.selection_manager",
+            "src.services.settings_service",
+            "src.services.slide_service",
+            "src.services.version_service",
+            "src.ui.main_window",
+            "sys",
+            "traceback"
+        ]
+    },
+    "src\\core\\constants.py": {
+        "lines": 24,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\core\\container.py": {
+        "lines": 47,
+        "classes": [
+            "ServiceContainer"
+        ],
+        "functions": [],
+        "methods": {
+            "ServiceContainer": [
+                "__init__",
+                "register",
+                "get",
+                "exists",
+                "clear"
+            ]
+        },
+        "imports": [
+            "typing"
+        ]
+    },
+    "src\\core\\event_bus.py": {
+        "lines": 42,
+        "classes": [
+            "EventBus"
+        ],
+        "functions": [],
+        "methods": {
+            "EventBus": [
+                "__init__",
+                "subscribe",
+                "emit",
+                "unsubscribe"
+            ]
+        },
+        "imports": []
+    },
+    "src\\core\\service.py": {
+        "lines": 36,
+        "classes": [
+            "BaseService"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "initialized"
+            ]
+        },
+        "imports": [
+            "abc"
+        ]
+    },
+    "src\\core\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\data\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\database\\database_service.py": {
+        "lines": 366,
+        "classes": [
+            "DatabaseService"
+        ],
+        "functions": [],
+        "methods": {
+            "DatabaseService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "execute",
+                "query",
+                "query_one",
+                "commit",
+                "rollback",
+                "create_tables",
+                "migrate"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "pathlib",
+            "sqlite3",
+            "src.core.service"
+        ]
+    },
+    "src\\database\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\exporters\\pptx_exporter.py": {
+        "lines": 75,
+        "classes": [
+            "PPTXExporter"
+        ],
+        "functions": [],
+        "methods": {
+            "PPTXExporter": [
+                "__init__",
+                "export"
+            ]
+        },
+        "imports": [
+            "pathlib",
+            "pptx",
+            "pptx.util",
+            "src.models.slide",
+            "src.renderers.slide_renderer"
+        ]
+    },
+    "src\\layouts\\base_layout.py": {
+        "lines": 14,
+        "classes": [
+            "BaseLayout"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseLayout": [
+                "build"
+            ]
+        },
+        "imports": [
+            "abc"
+        ]
+    },
+    "src\\layouts\\base_layout_builder.py": {
+        "lines": 276,
+        "classes": [
+            "BaseLayoutBuilder"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseLayoutBuilder": [
+                "layout_name",
+                "supports",
+                "build",
+                "create_slide",
+                "render",
+                "validate",
+                "post_process",
+                "apply_defaults",
+                "copy_metadata",
+                "create_text_element",
+                "create_image_element",
+                "create_chart_element",
+                "create_table_element"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "abc",
+            "src.models.draft_slide",
+            "src.models.slide"
+        ]
+    },
+    "src\\layouts\\layout_factory.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\layout_registry.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\picture_left_layout.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\picture_right_layout.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\title_content_layout.py": {
+        "lines": 240,
+        "classes": [
+            "TitleSlideBuilder"
+        ],
+        "functions": [],
+        "methods": {
+            "TitleSlideBuilder": [
+                "layout_name",
+                "build",
+                "build_title",
+                "build_subtitle",
+                "build_footer",
+                "build_background",
+                "can_build",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "layouts.base_layout_builder",
+            "models.elements.text_element",
+            "models.planned_slide",
+            "models.slide",
+            "themes.base_theme"
+        ]
+    },
+    "src\\layouts\\title_only_layout.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\two_columns_layout.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\__init__.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\models\\draft_slide.py": {
+        "lines": 84,
+        "classes": [
+            "DraftSlide"
+        ],
+        "functions": [],
+        "methods": {
+            "DraftSlide": []
+        },
+        "imports": [
+            "__future__",
+            "dataclasses"
+        ]
+    },
+    "src\\models\\planned_slide.py": {
+        "lines": 34,
+        "classes": [
+            "PlannedSlide"
+        ],
+        "functions": [],
+        "methods": {
+            "PlannedSlide": []
+        },
+        "imports": [
+            "dataclasses"
+        ]
+    },
+    "src\\models\\presentation.py": {
+        "lines": 215,
+        "classes": [
+            "Presentation"
+        ],
+        "functions": [],
+        "methods": {
+            "Presentation": [
+                "__init__",
+                "add_slide",
+                "insert_slide",
+                "remove_slide",
+                "remove_at",
+                "clear",
+                "slide_count",
+                "is_empty",
+                "copy",
+                "__getitem__",
+                "__iter__",
+                "__len__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "copy",
+            "models.slide",
+            "themes.base_theme"
+        ]
+    },
+    "src\\models\\presentation_document.py": {
+        "lines": 133,
+        "classes": [
+            "PresentationDocument"
+        ],
+        "functions": [],
+        "methods": {
+            "PresentationDocument": [
+                "slide_count",
+                "clear",
+                "mark_dirty",
+                "mark_saved"
+            ]
+        },
+        "imports": [
+            "dataclasses",
+            "datetime",
+            "src.models.slide",
+            "uuid"
+        ]
+    },
+    "src\\models\\presentation_draft.py": {
+        "lines": 106,
+        "classes": [
+            "PresentationDraft"
+        ],
+        "functions": [],
+        "methods": {
+            "PresentationDraft": [
+                "slide_count",
+                "add_slide",
+                "clear",
+                "__len__",
+                "__iter__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "src.models.draft_slide"
+        ]
+    },
+    "src\\models\\presentation_plan.py": {
+        "lines": 28,
+        "classes": [
+            "PresentationPlan"
+        ],
+        "functions": [],
+        "methods": {
+            "PresentationPlan": []
+        },
+        "imports": [
+            "dataclasses",
+            "src.models.planned_slide"
+        ]
+    },
+    "src\\models\\project.py": {
+        "lines": 58,
+        "classes": [
+            "Project"
+        ],
+        "functions": [],
+        "methods": {
+            "Project": [
+                "project_file",
+                "database_file"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "datetime",
+            "pathlib",
+            "uuid"
+        ]
+    },
+    "src\\models\\slide.py": {
+        "lines": 160,
+        "classes": [
+            "Slide"
+        ],
+        "functions": [],
+        "methods": {
+            "Slide": [
+                "touch",
+                "clear_elements",
+                "add_element",
+                "remove_element",
+                "has_image",
+                "has_content"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "datetime",
+            "src.models.elements.element",
+            "uuid"
+        ]
+    },
+    "src\\models\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\presentation\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\renderers\\base_renderer.py": {
+        "lines": 16,
+        "classes": [
+            "BaseRenderer"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseRenderer": [
+                "render"
+            ]
+        },
+        "imports": []
+    },
+    "src\\renderers\\chart_renderer.py": {
+        "lines": 37,
+        "classes": [
+            "ChartRenderer"
+        ],
+        "functions": [],
+        "methods": {
+            "ChartRenderer": [
+                "render"
+            ]
+        },
+        "imports": [
+            "pptx.enum.shapes",
+            "pptx.util",
+            "src.models.elements.chart_element"
+        ]
+    },
+    "src\\renderers\\image_renderer.py": {
+        "lines": 105,
+        "classes": [
+            "ImageRenderer"
+        ],
+        "functions": [],
+        "methods": {
+            "ImageRenderer": [
+                "px",
+                "render"
+            ]
+        },
+        "imports": [
+            "pathlib",
+            "pptx.enum.shapes",
+            "pptx.enum.text",
+            "pptx.util",
+            "src.models.elements.image_element"
+        ]
+    },
+    "src\\renderers\\slide_renderer.py": {
+        "lines": 92,
+        "classes": [
+            "SlideRenderer"
+        ],
+        "functions": [],
+        "methods": {
+            "SlideRenderer": [
+                "__init__",
+                "render",
+                "render_element",
+                "register_renderer"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.models.elements.chart_element",
+            "src.models.elements.image_element",
+            "src.models.elements.text_element",
+            "src.models.slide",
+            "src.renderers.chart_renderer",
+            "src.renderers.image_renderer",
+            "src.renderers.text_renderer"
+        ]
+    },
+    "src\\renderers\\text_renderer.py": {
+        "lines": 111,
+        "classes": [
+            "TextRenderer"
+        ],
+        "functions": [],
+        "methods": {
+            "TextRenderer": [
+                "px",
+                "render"
+            ]
+        },
+        "imports": [
+            "pptx.dml.color",
+            "pptx.enum.text",
+            "pptx.util",
+            "src.models.elements.text_element"
+        ]
+    },
+    "src\\repositories\\base_repository.py": {
+        "lines": 84,
+        "classes": [
+            "BaseRepository"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseRepository": [
+                "__init__",
+                "create_table",
+                "execute",
+                "query",
+                "query_one",
+                "execute_many",
+                "commit",
+                "rollback",
+                "table_exists"
+            ]
+        },
+        "imports": [
+            "src.database.database_service"
+        ]
+    },
+    "src\\repositories\\element_repository.py": {
+        "lines": 417,
+        "classes": [
+            "ElementRepository"
+        ],
+        "functions": [],
+        "methods": {
+            "ElementRepository": [
+                "__init__",
+                "save",
+                "_insert",
+                "_update",
+                "load_by_slide",
+                "delete",
+                "delete_by_slide",
+                "_create_element",
+                "_extra_data"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "json",
+            "src.database.database_service",
+            "src.models.elements.chart_element",
+            "src.models.elements.image_element",
+            "src.models.elements.text_element"
+        ]
+    },
+    "src\\repositories\\project_repository.py": {
+        "lines": 137,
+        "classes": [
+            "ProjectRepository"
+        ],
+        "functions": [],
+        "methods": {
+            "ProjectRepository": [
+                "__init__",
+                "add_recent_project",
+                "get_recent_projects",
+                "clear_recent_projects",
+                "project_exists",
+                "remove_recent_project"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.database.database_service"
+        ]
+    },
+    "src\\repositories\\slide_repository.py": {
+        "lines": 319,
+        "classes": [
+            "SlideRepository"
+        ],
+        "functions": [],
+        "methods": {
+            "SlideRepository": [
+                "__init__",
+                "save",
+                "_insert_slide",
+                "_update_slide",
+                "get",
+                "get_all",
+                "delete",
+                "clear",
+                "_save_elements",
+                "_load_elements",
+                "count",
+                "exists",
+                "save_all"
+            ]
+        },
+        "imports": [
+            "json",
+            "src.database.database_service"
+        ]
+    },
+    "src\\repositories\\__init__.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\services\\clipboard_service.py": {
+        "lines": 160,
+        "classes": [
+            "ClipboardService"
+        ],
+        "functions": [],
+        "methods": {
+            "ClipboardService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "clear",
+                "is_empty",
+                "has_data",
+                "copy",
+                "cut",
+                "paste",
+                "peek",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "copy",
+            "src.core.service",
+            "src.models.elements.element",
+            "uuid"
+        ]
+    },
+    "src\\services\\config_service.py": {
+        "lines": 85,
+        "classes": [
+            "ConfigService"
+        ],
+        "functions": [],
+        "methods": {
+            "ConfigService": [
+                "__init__",
+                "initialize",
+                "load",
+                "save",
+                "save_defaults",
+                "get",
+                "set"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "json",
+            "pathlib",
+            "src.core.service",
+            "typing"
+        ]
+    },
+    "src\\services\\content_generator_service.py": {
+        "lines": 30,
+        "classes": [
+            "ContentGeneratorService"
+        ],
+        "functions": [],
+        "methods": {
+            "ContentGeneratorService": [
+                "__init__",
+                "generate"
+            ]
+        },
+        "imports": [
+            "src.ai.providers.base_ai_provider",
+            "src.models.presentation_draft",
+            "src.models.presentation_plan"
+        ]
+    },
+    "src\\services\\element_service.py": {
+        "lines": 534,
+        "classes": [
+            "ElementService"
+        ],
+        "functions": [],
+        "methods": {
+            "ElementService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "_push_history",
+                "add",
+                "delete",
+                "duplicate",
+                "move",
+                "move_by",
+                "resize",
+                "resize_by",
+                "rotate",
+                "bring_forward",
+                "send_backward",
+                "bring_to_front",
+                "send_to_back",
+                "contains",
+                "count",
+                "index_of",
+                "clear",
+                "get_all",
+                "get"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "copy",
+            "src.core.service",
+            "src.models.elements.element",
+            "src.models.slide",
+            "src.services.commands.move_element_command",
+            "src.services.commands.resize_element_command",
+            "src.services.commands.rotate_element_command",
+            "uuid"
+        ]
+    },
+    "src\\services\\export_service.py": {
+        "lines": 113,
+        "classes": [
+            "ExportService"
+        ],
+        "functions": [],
+        "methods": {
+            "ExportService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "slide_count",
+                "export_pptx",
+                "export_current_project"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "pathlib",
+            "src.core.service",
+            "src.exporters.pptx_exporter",
+            "src.services.slide_service"
+        ]
+    },
+    "src\\services\\history_service.py": {
+        "lines": 205,
+        "classes": [
+            "HistoryService"
+        ],
+        "functions": [],
+        "methods": {
+            "HistoryService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "clear",
+                "push",
+                "current",
+                "can_undo",
+                "can_redo",
+                "undo",
+                "redo",
+                "history_size",
+                "future_size",
+                "is_empty",
+                "__len__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "copy",
+            "src.core.service"
+        ]
+    },
+    "src\\services\\language_service.py": {
+        "lines": 56,
+        "classes": [
+            "LanguageService"
+        ],
+        "functions": [],
+        "methods": {
+            "LanguageService": [
+                "__init__",
+                "initialize",
+                "load_language",
+                "tr",
+                "is_rtl"
+            ]
+        },
+        "imports": [
+            "json",
+            "pathlib",
+            "src.core.service"
+        ]
+    },
+    "src\\services\\layout_engine.py": {
+        "lines": 211,
+        "classes": [
+            "LayoutEngine"
+        ],
+        "functions": [],
+        "methods": {
+            "LayoutEngine": [
+                "__init__",
+                "registry",
+                "build",
+                "build_slide",
+                "can_build",
+                "available_layouts",
+                "clear",
+                "reload",
+                "__len__",
+                "__contains__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "models.presentation",
+            "models.presentation_plan",
+            "src.ai.layout_registry",
+            "themes.base_theme"
+        ]
+    },
+    "src\\services\\logger_service.py": {
+        "lines": 105,
+        "classes": [
+            "LoggerService"
+        ],
+        "functions": [],
+        "methods": {
+            "LoggerService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "debug",
+                "info",
+                "warning",
+                "error",
+                "critical",
+                "exception"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "logging",
+            "pathlib",
+            "src.core.service"
+        ]
+    },
+    "src\\services\\presentation_service.py": {
+        "lines": 143,
+        "classes": [
+            "PresentationService"
+        ],
+        "functions": [],
+        "methods": {
+            "PresentationService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "generate",
+                "regenerate"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.ai.ai_client",
+            "src.ai.content_writer",
+            "src.ai.presentation_planner",
+            "src.ai.prompt_builder",
+            "src.core.service",
+            "src.services.layout_engine",
+            "src.services.slide_service"
+        ]
+    },
+    "src\\services\\project_service.py": {
+        "lines": 374,
+        "classes": [
+            "ProjectService"
+        ],
+        "functions": [],
+        "methods": {
+            "ProjectService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "project_name",
+                "project_path",
+                "mark_dirty",
+                "mark_saved",
+                "create_project",
+                "load_project",
+                "save_project",
+                "close_project",
+                "project_is_open",
+                "_create_project_structure",
+                "_write_project_file",
+                "_read_project_file"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "datetime",
+            "json",
+            "pathlib",
+            "src.core.service",
+            "src.models.project"
+        ]
+    },
+    "src\\services\\selection_manager.py": {
+        "lines": 193,
+        "classes": [
+            "SelectionManager"
+        ],
+        "functions": [],
+        "methods": {
+            "SelectionManager": [
+                "__init__",
+                "current_slide",
+                "set_slide",
+                "has_slide",
+                "current_element",
+                "set_element",
+                "has_element",
+                "clear_element",
+                "clear_slide",
+                "clear",
+                "is_selected",
+                "select_first",
+                "__repr__",
+                "has_selection",
+                "selection_empty",
+                "selected_element"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "__future__",
+            "src.models.elements.element",
+            "src.models.slide"
+        ]
+    },
+    "src\\services\\settings_service.py": {
+        "lines": 607,
+        "classes": [
+            "SettingsService"
+        ],
+        "functions": [],
+        "methods": {
+            "SettingsService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "settings",
+                "load",
+                "save",
+                "reset",
+                "get",
+                "set",
+                "contains",
+                "remove",
+                "update",
+                "_merge",
+                "all",
+                "export",
+                "import_file",
+                "backup",
+                "restore",
+                "validate",
+                "reload",
+                "__getitem__",
+                "__setitem__",
+                "__contains__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "copy",
+            "json",
+            "pathlib",
+            "src.core.service"
+        ]
+    },
+    "src\\services\\slide_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\services\\slide_renderer.py": {
+        "lines": 184,
+        "classes": [
+            "SlideRenderer"
+        ],
+        "functions": [],
+        "methods": {
+            "SlideRenderer": [
+                "render",
+                "render_all",
+                "_render_title",
+                "_render_title_content",
+                "_render_two_columns"
+            ]
+        },
+        "imports": [
+            "src.models.elements.image_element",
+            "src.models.elements.text_element",
+            "src.models.slide"
+        ]
+    },
+    "src\\services\\slide_service.py": {
+        "lines": 409,
+        "classes": [
+            "SlideService"
+        ],
+        "functions": [],
+        "methods": {
+            "SlideService": [
+                "__init__",
+                "initialize",
+                "shutdown",
+                "slides",
+                "load",
+                "clear",
+                "replace_all",
+                "add_existing_slide",
+                "add_slide",
+                "delete_slide",
+                "save_slide",
+                "renumber",
+                "get",
+                "index_of",
+                "count",
+                "_save_elements",
+                "_mark_dirty",
+                "find_by_id",
+                "exists",
+                "all",
+                "last"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "datetime",
+            "src.core.service",
+            "src.models.presentation_document",
+            "src.models.slide",
+            "src.repositories.element_repository",
+            "src.repositories.slide_repository"
+        ]
+    },
+    "src\\services\\version_service.py": {
+        "lines": 79,
+        "classes": [
+            "VersionService"
+        ],
+        "functions": [],
+        "methods": {
+            "VersionService": [
+                "__init__",
+                "initialize",
+                "version",
+                "build"
+            ]
+        },
+        "imports": [
+            "json",
+            "pathlib",
+            "src.core.service"
+        ]
+    },
+    "src\\services\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ui\\main_window.py": {
+        "lines": 414,
+        "classes": [
+            "MainWindow"
+        ],
+        "functions": [],
+        "methods": {
+            "MainWindow": [
+                "__init__",
+                "initialize_ui",
+                "refresh_title",
+                "new_project",
+                "open_project",
+                "save_project",
+                "generate_presentation",
+                "export_presentation"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtWidgets",
+            "src.ai.prompt_builder",
+            "src.services.export_service",
+            "src.services.logger_service",
+            "src.services.presentation_service",
+            "src.services.project_service",
+            "src.services.slide_service",
+            "src.ui.dialogs.generate_dialog",
+            "src.ui.dialogs.new_project_dialog",
+            "src.ui.menu_bar",
+            "src.ui.navigation",
+            "src.ui.status_bar",
+            "src.ui.tool_bar",
+            "src.ui.workspace"
+        ]
+    },
+    "src\\ui\\menu_bar.py": {
+        "lines": 71,
+        "classes": [],
+        "functions": [
+            "build_menu_bar"
+        ],
+        "methods": {},
+        "imports": [
+            "PySide6.QtGui",
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\navigation.py": {
+        "lines": 71,
+        "classes": [
+            "NavigationPanel"
+        ],
+        "functions": [],
+        "methods": {
+            "NavigationPanel": [
+                "__init__",
+                "build_ui",
+                "current_page"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\status_bar.py": {
+        "lines": 23,
+        "classes": [],
+        "functions": [
+            "build_status_bar"
+        ],
+        "methods": {},
+        "imports": [
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\tool_bar.py": {
+        "lines": 85,
+        "classes": [],
+        "functions": [
+            "build_tool_bar"
+        ],
+        "methods": {},
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtGui",
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\workspace.py": {
+        "lines": 115,
+        "classes": [
+            "Workspace"
+        ],
+        "functions": [],
+        "methods": {
+            "Workspace": [
+                "__init__",
+                "build_ui",
+                "show_page"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "src.services.logger_service",
+            "src.ui.pages.about_page",
+            "src.ui.pages.ai_page",
+            "src.ui.pages.assets_page",
+            "src.ui.pages.dashboard_page",
+            "src.ui.pages.presentation_page",
+            "src.ui.pages.projects_page",
+            "src.ui.pages.settings_page",
+            "src.ui.pages.slides_page",
+            "src.ui.pages.templates_page",
+            "src.ui.pages.themes_page"
+        ]
+    },
+    "src\\ui\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\utils\\__init__.py": {
+        "lines": 1,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ai\\providers\\base_ai_provider.py": {
+        "lines": 152,
+        "classes": [
+            "BaseAIProvider"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseAIProvider": [
+                "name",
+                "is_local",
+                "is_online",
+                "initialize",
+                "shutdown",
+                "available",
+                "models",
+                "set_model",
+                "generate",
+                "__str__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "abc",
+            "src.ai.prompt_builder"
+        ]
+    },
+    "src\\ai\\providers\\fake_ai_provider.py": {
+        "lines": 181,
+        "classes": [
+            "FakeAIProvider"
+        ],
+        "functions": [],
+        "methods": {
+            "FakeAIProvider": [
+                "name",
+                "is_local",
+                "initialize",
+                "shutdown",
+                "generate"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "json",
+            "src.ai.providers.base_ai_provider"
+        ]
+    },
+    "src\\ai\\providers\\gemini_provider.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ai\\providers\\ollama_provider.py": {
+        "lines": 611,
+        "classes": [
+            "OllamaProvider"
+        ],
+        "functions": [],
+        "methods": {
+            "OllamaProvider": [
+                "__init__",
+                "name",
+                "is_local",
+                "api_url",
+                "tags_url",
+                "initialize",
+                "shutdown",
+                "ping",
+                "available",
+                "_request",
+                "generate",
+                "stream_generate",
+                "list_models",
+                "model_exists",
+                "set_model",
+                "set_host",
+                "set_timeout",
+                "set_generation_options",
+                "configuration",
+                "supports_streaming",
+                "supports_json_mode",
+                "supports_images",
+                "supports_tools",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "requests",
+            "requests.exceptions",
+            "src.ai.prompt_builder",
+            "src.ai.providers.base_ai_provider",
+            "typing"
+        ]
+    },
+    "src\\ai\\providers\\openai_provider.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ai\\providers\\provider_manager.py": {
+        "lines": 324,
+        "classes": [
+            "ProviderManager"
+        ],
+        "functions": [],
+        "methods": {
+            "ProviderManager": [
+                "__init__",
+                "register",
+                "unregister",
+                "provider",
+                "has_provider",
+                "current",
+                "set_current",
+                "names",
+                "local_providers",
+                "online_providers",
+                "available_providers",
+                "best_provider",
+                "clear",
+                "__len__",
+                "__contains__",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.ai.prompt_builder",
+            "src.ai.providers.base_ai_provider"
+        ]
+    },
+    "src\\core\\design\\color.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\core\\design\\radius.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\core\\design\\shadow.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\core\\design\\spacing.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\core\\design\\typography.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\chart_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\comparison_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\image_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\process_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\quote_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\statistics_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\table_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\timeline_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\title_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\title_content_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\layouts\\builders\\two_columns_builder.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\models\\elements\\base_element.py": {
+        "lines": 364,
+        "classes": [
+            "BaseElement"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseElement": [
+                "show",
+                "hide",
+                "lock",
+                "unlock",
+                "move",
+                "move_to",
+                "resize",
+                "rotate",
+                "scale",
+                "bounds",
+                "center",
+                "contains",
+                "intersects",
+                "duplicate",
+                "to_dict",
+                "from_dict",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "uuid"
+        ]
+    },
+    "src\\models\\elements\\chart_element.py": {
+        "lines": 113,
+        "classes": [
+            "ChartElement"
+        ],
+        "functions": [],
+        "methods": {
+            "ChartElement": [
+                "point_count",
+                "maximum",
+                "minimum",
+                "average",
+                "clear",
+                "add_point"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "src.models.elements.element"
+        ]
+    },
+    "src\\models\\elements\\element.py": {
+        "lines": 177,
+        "classes": [
+            "Element"
+        ],
+        "functions": [],
+        "methods": {
+            "Element": [
+                "right",
+                "bottom",
+                "center_x",
+                "center_y",
+                "contains",
+                "move_to",
+                "move_by",
+                "resize",
+                "clone_geometry_from",
+                "bounds"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "datetime",
+            "uuid"
+        ]
+    },
+    "src\\models\\elements\\image_element.py": {
+        "lines": 82,
+        "classes": [
+            "ImageElement"
+        ],
+        "functions": [],
+        "methods": {
+            "ImageElement": [
+                "has_image",
+                "has_prompt"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "src.models.elements.element"
+        ]
+    },
+    "src\\models\\elements\\shape_element.py": {
+        "lines": 23,
+        "classes": [
+            "ShapeElement"
+        ],
+        "functions": [],
+        "methods": {
+            "ShapeElement": []
+        },
+        "imports": [
+            "dataclasses",
+            "src.models.elements.element"
+        ]
+    },
+    "src\\models\\elements\\table_element.py": {
+        "lines": 21,
+        "classes": [
+            "TableElement"
+        ],
+        "functions": [],
+        "methods": {
+            "TableElement": []
+        },
+        "imports": [
+            "dataclasses",
+            "src.models.elements.element"
+        ]
+    },
+    "src\\models\\elements\\text_element.py": {
+        "lines": 310,
+        "classes": [
+            "TextElement"
+        ],
+        "functions": [],
+        "methods": {
+            "TextElement": [
+                "set_text",
+                "append",
+                "prepend",
+                "clear",
+                "replace",
+                "is_empty",
+                "character_count",
+                "word_count",
+                "to_dict",
+                "from_dict",
+                "clone",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "copy",
+            "dataclasses",
+            "src.models.elements.base_element",
+            "src.models.styles.text_style",
+            "uuid"
+        ]
+    },
+    "src\\models\\elements\\__init__.py": {
+        "lines": 12,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": [
+            "chart_element",
+            "element",
+            "image_element",
+            "shape_element",
+            "table_element",
+            "text_element"
+        ]
+    },
+    "src\\models\\styles\\base_style.py": {
+        "lines": 286,
+        "classes": [
+            "BaseStyle"
+        ],
+        "functions": [],
+        "methods": {
+            "BaseStyle": [
+                "show",
+                "hide",
+                "set_opacity",
+                "set_margin",
+                "set_padding",
+                "copy",
+                "merge",
+                "reset",
+                "to_dict",
+                "from_dict",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "uuid"
+        ]
+    },
+    "src\\models\\styles\\image_style.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\models\\styles\\shape_style.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\models\\styles\\text_style.py": {
+        "lines": 326,
+        "classes": [
+            "TextStyle"
+        ],
+        "functions": [],
+        "methods": {
+            "TextStyle": [
+                "set_font",
+                "set_bold",
+                "set_italic",
+                "set_underline",
+                "set_strike",
+                "set_color",
+                "set_background",
+                "set_highlight",
+                "set_alignment",
+                "set_spacing",
+                "set_indent",
+                "enable_bullets",
+                "enable_numbering",
+                "disable_list",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "dataclasses",
+            "src.models.styles.base_style"
+        ]
+    },
+    "src\\services\\commands\\command.py": {
+        "lines": 25,
+        "classes": [
+            "Command"
+        ],
+        "functions": [],
+        "methods": {
+            "Command": [
+                "undo",
+                "redo"
+            ]
+        },
+        "imports": [
+            "__future__"
+        ]
+    },
+    "src\\services\\commands\\move_element_command.py": {
+        "lines": 70,
+        "classes": [
+            "MoveElementCommand"
+        ],
+        "functions": [],
+        "methods": {
+            "MoveElementCommand": [
+                "__init__",
+                "undo",
+                "redo"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.models.elements.element",
+            "src.services.commands.command"
+        ]
+    },
+    "src\\services\\commands\\resize_element_command.py": {
+        "lines": 70,
+        "classes": [
+            "ResizeElementCommand"
+        ],
+        "functions": [],
+        "methods": {
+            "ResizeElementCommand": [
+                "__init__",
+                "undo",
+                "redo"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.models.elements.element",
+            "src.services.commands.command"
+        ]
+    },
+    "src\\services\\commands\\rotate_element_command.py": {
+        "lines": 62,
+        "classes": [
+            "RotateElementCommand"
+        ],
+        "functions": [],
+        "methods": {
+            "RotateElementCommand": [
+                "__init__",
+                "undo",
+                "redo"
+            ]
+        },
+        "imports": [
+            "__future__",
+            "src.models.elements.element",
+            "src.services.commands.command"
+        ]
+    },
+    "src\\services\\commands\\__init__.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ui\\dialogs\\generate_dialog.py": {
+        "lines": 710,
+        "classes": [
+            "GenerateDialog"
+        ],
+        "functions": [],
+        "methods": {
+            "GenerateDialog": [
+                "__init__",
+                "build_ui",
+                "build_general_tab",
+                "build_presentation_tab",
+                "build_ai_tab",
+                "build_content_tab",
+                "_update_creativity_label",
+                "request",
+                "accept",
+                "topic",
+                "prompt",
+                "count"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtWidgets",
+            "__future__",
+            "src.ai.prompt_builder"
+        ]
+    },
+    "src\\ui\\dialogs\\new_project_dialog.py": {
+        "lines": 81,
+        "classes": [
+            "NewProjectDialog"
+        ],
+        "functions": [],
+        "methods": {
+            "NewProjectDialog": [
+                "__init__",
+                "select_folder"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\models\\slides_model.py": {
+        "lines": 88,
+        "classes": [
+            "SlidesModel"
+        ],
+        "functions": [],
+        "methods": {
+            "SlidesModel": [
+                "__init__",
+                "rowCount",
+                "data",
+                "refresh"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "src.services.slide_service"
+        ]
+    },
+    "src\\ui\\pages\\about_page.py": {
+        "lines": 14,
+        "classes": [
+            "AboutPage"
+        ],
+        "functions": [],
+        "methods": {
+            "AboutPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\ai_page.py": {
+        "lines": 14,
+        "classes": [
+            "AIPage"
+        ],
+        "functions": [],
+        "methods": {
+            "AIPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\assets_page.py": {
+        "lines": 14,
+        "classes": [
+            "AssetsPage"
+        ],
+        "functions": [],
+        "methods": {
+            "AssetsPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\base_page.py": {
+        "lines": 55,
+        "classes": [
+            "BasePage"
+        ],
+        "functions": [],
+        "methods": {
+            "BasePage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\pages\\dashboard_page.py": {
+        "lines": 14,
+        "classes": [
+            "DashboardPage"
+        ],
+        "functions": [],
+        "methods": {
+            "DashboardPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\presentation_page.py": {
+        "lines": 14,
+        "classes": [
+            "PresentationPage"
+        ],
+        "functions": [],
+        "methods": {
+            "PresentationPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\projects_page.py": {
+        "lines": 50,
+        "classes": [
+            "ProjectsPage"
+        ],
+        "functions": [],
+        "methods": {
+            "ProjectsPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtWidgets"
+        ]
+    },
+    "src\\ui\\pages\\settings_page.py": {
+        "lines": 14,
+        "classes": [
+            "SettingsPage"
+        ],
+        "functions": [],
+        "methods": {
+            "SettingsPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\slides_page.py": {
+        "lines": 236,
+        "classes": [
+            "SlidesPage"
+        ],
+        "functions": [],
+        "methods": {
+            "SlidesPage": [
+                "__init__",
+                "build_ui",
+                "refresh",
+                "add_slide",
+                "delete_slide",
+                "duplicate_slide",
+                "slide_selected",
+                "current_slide"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "src.services.slide_renderer",
+            "src.services.slide_service",
+            "src.ui.widgets.slide_editor"
+        ]
+    },
+    "src\\ui\\pages\\templates_page.py": {
+        "lines": 14,
+        "classes": [
+            "TemplatesPage"
+        ],
+        "functions": [],
+        "methods": {
+            "TemplatesPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\themes_page.py": {
+        "lines": 14,
+        "classes": [
+            "ThemesPage"
+        ],
+        "functions": [],
+        "methods": {
+            "ThemesPage": [
+                "__init__"
+            ]
+        },
+        "imports": [
+            "src.ui.pages.base_page"
+        ]
+    },
+    "src\\ui\\pages\\__init__.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ui\\widgets\\chart_widget.py": {
+        "lines": 56,
+        "classes": [
+            "ChartWidget"
+        ],
+        "functions": [],
+        "methods": {
+            "ChartWidget": [
+                "__init__",
+                "load",
+                "clear"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "__future__",
+            "src.models.elements.chart_element"
+        ]
+    },
+    "src\\ui\\widgets\\editor_toolbar.py": {
+        "lines": 208,
+        "classes": [
+            "EditorToolBar"
+        ],
+        "functions": [],
+        "methods": {
+            "EditorToolBar": [
+                "__init__",
+                "build_ui",
+                "set_enabled"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtWidgets",
+            "__future__"
+        ]
+    },
+    "src\\ui\\widgets\\geometry_widget.py": {
+        "lines": 289,
+        "classes": [
+            "GeometryWidget"
+        ],
+        "functions": [],
+        "methods": {
+            "GeometryWidget": [
+                "__init__",
+                "build_ui",
+                "_create_spinbox",
+                "_connect_signals",
+                "load",
+                "clear",
+                "_apply_changes"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "__future__",
+            "src.models.elements.element",
+            "src.services.element_service",
+            "src.services.slide_service"
+        ]
+    },
+    "src\\ui\\widgets\\image_widget.py": {
+        "lines": 56,
+        "classes": [
+            "ImageWidget"
+        ],
+        "functions": [],
+        "methods": {
+            "ImageWidget": [
+                "__init__",
+                "load",
+                "clear"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "__future__",
+            "src.models.elements.image_element"
+        ]
+    },
+    "src\\ui\\widgets\\property_panel.py": {
+        "lines": 353,
+        "classes": [
+            "PropertyPanel"
+        ],
+        "functions": [],
+        "methods": {
+            "PropertyPanel": [
+                "__init__",
+                "set_slide",
+                "build_ui",
+                "build_pages",
+                "refresh",
+                "current_element",
+                "clear",
+                "reload",
+                "update_values",
+                "__repr__"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "__future__",
+            "src.models.elements.chart_element",
+            "src.models.elements.image_element",
+            "src.models.elements.text_element",
+            "src.ui.widgets.chart_widget",
+            "src.ui.widgets.geometry_widget",
+            "src.ui.widgets.image_widget",
+            "src.ui.widgets.text_widget"
+        ]
+    },
+    "src\\ui\\widgets\\slide_editor.py": {
+        "lines": 156,
+        "classes": [
+            "SlideEditor"
+        ],
+        "functions": [],
+        "methods": {
+            "SlideEditor": [
+                "__init__",
+                "build_ui",
+                "set_slide",
+                "clear",
+                "refresh",
+                "current_slide",
+                "current_element"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "__future__",
+            "src.models.slide",
+            "src.ui.widgets.editor_toolbar",
+            "src.ui.widgets.property_panel",
+            "src.ui.widgets.slide_preview"
+        ]
+    },
+    "src\\ui\\widgets\\slide_preview.py": {
+        "lines": 452,
+        "classes": [
+            "SlidePreviewWidget"
+        ],
+        "functions": [],
+        "methods": {
+            "SlidePreviewWidget": [
+                "__init__",
+                "set_slide",
+                "paintEvent",
+                "_draw_text",
+                "_draw_image",
+                "mousePressEvent",
+                "mouseMoveEvent",
+                "mouseReleaseEvent"
+            ]
+        },
+        "imports": [
+            "PySide6.QtCore",
+            "PySide6.QtGui",
+            "PySide6.QtWidgets",
+            "pathlib",
+            "src.models.elements.image_element",
+            "src.models.elements.text_element",
+            "src.models.slide",
+            "src.services.element_service",
+            "src.services.slide_service"
+        ]
+    },
+    "src\\ui\\widgets\\text_widget.py": {
+        "lines": 49,
+        "classes": [
+            "TextWidget"
+        ],
+        "functions": [],
+        "methods": {
+            "TextWidget": [
+                "__init__",
+                "load",
+                "clear"
+            ]
+        },
+        "imports": [
+            "PySide6.QtWidgets",
+            "__future__"
+        ]
+    },
+    "src\\ui\\widgets\\editor\\editor_canvas.py": {
+        "lines": 29,
+        "classes": [
+            "EditorCanvas"
+        ],
+        "functions": [],
+        "methods": {
+            "EditorCanvas": [
+                "__init__",
+                "set_slide"
+            ]
+        },
+        "imports": [
+            "PySide6.QtVBoxLayout",
+            "PySide6.QtWidgets",
+            "src.ui.widgets.slide_preview"
+        ]
+    },
+    "src\\ui\\widgets\\editor\\editor_toolbar.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    },
+    "src\\ui\\widgets\\editor\\__init__.py": {
+        "lines": 0,
+        "classes": [],
+        "functions": [],
+        "methods": {},
+        "imports": []
+    }
+}

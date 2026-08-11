@@ -1,0 +1,215 @@
+PresentationAI
+├── .qodo
+│   ├── agents
+│   └── workflows
+├── assets
+│   ├── fonts
+│   ├── icons
+│   ├── images
+│   ├── languages
+│   │   ├── en.json
+│   │   └── fa.json
+│   └── logos
+├── config
+│   ├── settings.json
+│   └── version.json
+├── database
+│   └── app.db
+├── logs
+│   └── app.log
+├── output
+├── plugins
+├── projects
+├── src
+│   ├── ai
+│   │   ├── providers
+│   │   │   ├── base_ai_provider.py
+│   │   │   ├── fake_ai_provider.py
+│   │   │   ├── gemini_provider.py
+│   │   │   ├── ollama_provider.py
+│   │   │   ├── openai_provider.py
+│   │   │   └── provider_manager.py
+│   │   ├── __init__.py
+│   │   ├── ai_client.py
+│   │   ├── content_writer.py
+│   │   ├── layout_registry.py
+│   │   ├── presentation_planner.py
+│   │   ├── prompt_builder.py
+│   │   └── prompt_request.py
+│   ├── assets
+│   │   └── __init__.py
+│   ├── builders
+│   │   └── slide_builder.py
+│   ├── config
+│   │   ├── __init__.py
+│   │   └── settings.json
+│   ├── core
+│   │   ├── design
+│   │   │   ├── color.py
+│   │   │   ├── radius.py
+│   │   │   ├── shadow.py
+│   │   │   ├── spacing.py
+│   │   │   └── typography.py
+│   │   ├── __init__.py
+│   │   ├── application.py
+│   │   ├── constants.py
+│   │   ├── container.py
+│   │   ├── event_bus.py
+│   │   └── service.py
+│   ├── data
+│   │   └── __init__.py
+│   ├── database
+│   │   ├── __init__.py
+│   │   └── database_service.py
+│   ├── exporters
+│   │   └── pptx_exporter.py
+│   ├── history
+│   ├── layouts
+│   │   ├── builders
+│   │   │   ├── chart_builder.py
+│   │   │   ├── comparison_builder.py
+│   │   │   ├── image_builder.py
+│   │   │   ├── process_builder.py
+│   │   │   ├── quote_builder.py
+│   │   │   ├── statistics_builder.py
+│   │   │   ├── table_builder.py
+│   │   │   ├── timeline_builder.py
+│   │   │   ├── title_builder.py
+│   │   │   ├── title_content_builder.py
+│   │   │   └── two_columns_builder.py
+│   │   ├── __init__.py
+│   │   ├── base_layout.py
+│   │   ├── base_layout_builder.py
+│   │   ├── layout_factory.py
+│   │   ├── layout_registry.py
+│   │   ├── picture_left_layout.py
+│   │   ├── picture_right_layout.py
+│   │   ├── title_content_layout.py
+│   │   ├── title_only_layout.py
+│   │   └── two_columns_layout.py
+│   ├── models
+│   │   ├── elements
+│   │   │   ├── __init__.py
+│   │   │   ├── base_element.py
+│   │   │   ├── chart_element.py
+│   │   │   ├── element.py
+│   │   │   ├── image_element.py
+│   │   │   ├── shape_element.py
+│   │   │   ├── table_element.py
+│   │   │   └── text_element.py
+│   │   ├── styles
+│   │   │   ├── base_style.py
+│   │   │   ├── image_style.py
+│   │   │   ├── shape_style.py
+│   │   │   └── text_style.py
+│   │   ├── __init__.py
+│   │   ├── draft_slide.py
+│   │   ├── planned_slide.py
+│   │   ├── presentation.py
+│   │   ├── presentation_document.py
+│   │   ├── presentation_draft.py
+│   │   ├── presentation_plan.py
+│   │   ├── project.py
+│   │   └── slide.py
+│   ├── presentation
+│   │   └── __init__.py
+│   ├── renderers
+│   │   ├── base_renderer.py
+│   │   ├── chart_renderer.py
+│   │   ├── image_renderer.py
+│   │   ├── slide_renderer.py
+│   │   └── text_renderer.py
+│   ├── repositories
+│   │   ├── __init__.py
+│   │   ├── base_repository.py
+│   │   ├── element_repository.py
+│   │   ├── project_repository.py
+│   │   └── slide_repository.py
+│   ├── services
+│   │   ├── commands
+│   │   │   ├── __init__.py
+│   │   │   ├── command.py
+│   │   │   ├── move_element_command.py
+│   │   │   ├── resize_element_command.py
+│   │   │   └── rotate_element_command.py
+│   │   ├── __init__.py
+│   │   ├── clipboard_service.py
+│   │   ├── config_service.py
+│   │   ├── content_generator_service.py
+│   │   ├── element_service.py
+│   │   ├── export_service.py
+│   │   ├── history_service.py
+│   │   ├── language_service.py
+│   │   ├── layout_engine.py
+│   │   ├── logger_service.py
+│   │   ├── presentation_service.py
+│   │   ├── project_service.py
+│   │   ├── selection_manager.py
+│   │   ├── settings_service.py
+│   │   ├── slide_builder.py
+│   │   ├── slide_renderer.py
+│   │   ├── slide_service.py
+│   │   └── version_service.py
+│   ├── ui
+│   │   ├── dialogs
+│   │   │   ├── generate_dialog.py
+│   │   │   └── new_project_dialog.py
+│   │   ├── models
+│   │   │   └── slides_model.py
+│   │   ├── pages
+│   │   │   ├── __init__.py
+│   │   │   ├── about_page.py
+│   │   │   ├── ai_page.py
+│   │   │   ├── assets_page.py
+│   │   │   ├── base_page.py
+│   │   │   ├── dashboard_page.py
+│   │   │   ├── presentation_page.py
+│   │   │   ├── projects_page.py
+│   │   │   ├── settings_page.py
+│   │   │   ├── slides_page.py
+│   │   │   ├── templates_page.py
+│   │   │   └── themes_page.py
+│   │   ├── widgets
+│   │   │   ├── editor
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── editor_canvas.py
+│   │   │   │   └── editor_toolbar.py
+│   │   │   ├── chart_widget.py
+│   │   │   ├── editor_toolbar.py
+│   │   │   ├── geometry_widget.py
+│   │   │   ├── image_widget.py
+│   │   │   ├── property_panel.py
+│   │   │   ├── slide_editor.py
+│   │   │   ├── slide_preview.py
+│   │   │   └── text_widget.py
+│   │   ├── __init__.py
+│   │   ├── main_window.py
+│   │   ├── menu_bar.py
+│   │   ├── navigation.py
+│   │   ├── status_bar.py
+│   │   ├── tool_bar.py
+│   │   └── workspace.py
+│   ├── utils
+│   │   └── __init__.py
+│   └── __init__.py
+├── templates
+├── tests
+├── themes
+│   ├── academic_theme.py
+│   ├── base_theme.py
+│   ├── corporate_theme.py
+│   ├── dark_theme.py
+│   ├── financial_theme.py
+│   ├── medical_theme.py
+│   ├── minimal_theme.py
+│   ├── modern_theme.py
+│   └── theme_manager.py
+├── .gitignore
+├── bootstrap.py
+├── Dircheck.py
+├── launcher.py
+├── project_details.json
+├── project_tree.txt
+├── README.md
+├── requirements.txt
+└── test.py

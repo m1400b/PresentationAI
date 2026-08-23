@@ -1,7 +1,7 @@
 """
 PresentationAI
 
-Title + Content Layout
+Title Slide Layout
 """
 
 from __future__ import annotations
@@ -22,20 +22,10 @@ from src.models.elements.text_element import (
     TextElement,
 )
 
-from src.models.elements.image_element import (
-    ImageElement,
-)
 
-
-class TitleContentLayout(BaseLayoutBuilder):
+class TitleSlideLayout(BaseLayoutBuilder):
     """
-    Layout builder for title + content slides.
-
-    Supports:
-        - Title
-        - Subtitle
-        - Bullet content
-        - Optional image
+    Layout builder for title slides.
     """
 
     # =================================================
@@ -47,7 +37,7 @@ class TitleContentLayout(BaseLayoutBuilder):
         self,
     ) -> str:
 
-        return "title_content"
+        return "title_slide"
 
     # =================================================
     # Rendering
@@ -59,7 +49,7 @@ class TitleContentLayout(BaseLayoutBuilder):
         draft: DraftSlide,
     ) -> None:
         """
-        Renders a title + content slide.
+        Renders a title slide.
         """
 
         # -------------------------------------------------
@@ -68,16 +58,16 @@ class TitleContentLayout(BaseLayoutBuilder):
 
         title = TextElement(
             text=draft.title,
-            x=1.0,
-            y=0.5,
-            width=22.0,
-            height=1.0,
+            x=2.0,
+            y=2.5,
+            width=20.0,
+            height=1.5,
             role="title",
         )
 
         title.style.set_font(
             family="Calibri",
-            size=30,
+            size=34,
         )
 
         title.style.set_bold(
@@ -89,7 +79,7 @@ class TitleContentLayout(BaseLayoutBuilder):
             vertical="center",
         )
 
-        slide.add_element(
+        slide.elements.append(
             title
         )
 
@@ -101,16 +91,16 @@ class TitleContentLayout(BaseLayoutBuilder):
 
             subtitle = TextElement(
                 text=draft.subtitle,
-                x=1.0,
-                y=1.55,
-                width=22.0,
-                height=0.7,
+                x=3.0,
+                y=4.2,
+                width=18.0,
+                height=1.0,
                 role="subtitle",
             )
 
             subtitle.style.set_font(
                 family="Calibri",
-                size=18,
+                size=20,
             )
 
             subtitle.style.set_alignment(
@@ -118,63 +108,8 @@ class TitleContentLayout(BaseLayoutBuilder):
                 vertical="center",
             )
 
-            slide.add_element(
+            slide.elements.append(
                 subtitle
-            )
-
-        # -------------------------------------------------
-        # Content
-        # -------------------------------------------------
-
-        body = "\n".join(
-            f"• {bullet}"
-            for bullet in draft.bullets
-        )
-
-        if body:
-
-            content = TextElement(
-                text=body,
-                x=1.0,
-                y=2.2,
-                width=12.0,
-                height=7.5,
-                role="content",
-            )
-
-            content.style.set_font(
-                family="Calibri",
-                size=22,
-            )
-
-            content.style.set_alignment(
-                horizontal="left",
-                vertical="top",
-            )
-
-            content.style.enable_bullets()
-
-            slide.add_element(
-                content
-            )
-
-        # -------------------------------------------------
-        # Image
-        # -------------------------------------------------
-
-        if draft.image_required and draft.image_prompt:
-
-            image = ImageElement(
-                x=14.0,
-                y=2.2,
-                width=8.0,
-                height=7.5,
-                caption=draft.image_prompt,
-                prompt=draft.image_prompt,
-            )
-
-            slide.add_element(
-                image
             )
 
         # -------------------------------------------------

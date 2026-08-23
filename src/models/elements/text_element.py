@@ -10,8 +10,8 @@ from dataclasses import dataclass
 from dataclasses import field
 from copy import deepcopy
 from uuid import uuid4
-from src.models.elements.base_element import (
-    BaseElement,
+from src.models.elements.element import (
+    Element,
 )
 
 from src.models.styles.text_style import (
@@ -20,7 +20,7 @@ from src.models.styles.text_style import (
 
 
 @dataclass(slots=True)
-class TextElement(BaseElement):
+class TextElement(Element):
     """
     Represents a text object
     on a slide.

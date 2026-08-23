@@ -23,7 +23,9 @@ class PlannedSlide:
 
     layout: str = "Title + Content"
 
-    content: list[str] = field(default_factory=list)
+    content: list[str] = field(
+        default_factory=list
+    )
 
     image_prompt: str = ""
 
@@ -31,4 +33,8 @@ class PlannedSlide:
 
     image_required: bool = False
 
-    estimated_bullets: int = 4
+    chart_required: bool = False
+
+    table_required: bool = False
+
+    estimated_bullets: int = 0

@@ -207,7 +207,7 @@ class ContentWriter:
 
         for bullet in getattr(
             slide,
-            "bullets",
+            "content",
             [],
         ):
 

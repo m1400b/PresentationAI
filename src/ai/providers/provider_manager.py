@@ -6,7 +6,7 @@ Provider Manager
 
 from __future__ import annotations
 
-from src.ai.prompt_builder import PromptRequest
+from src.ai.prompt_request import PromptRequest
 from src.ai.providers.base_ai_provider import BaseAIProvider
 
 

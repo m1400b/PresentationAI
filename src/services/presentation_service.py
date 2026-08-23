@@ -29,6 +29,9 @@ from src.services.slide_service import (
 from src.services.layout_engine import (
     LayoutEngine,
 )
+from themes.base_theme import (
+    BaseTheme,
+)
 
 
 class PresentationService(BaseService):
@@ -56,11 +59,12 @@ class PresentationService(BaseService):
     # -------------------------------------------------
 
     def __init__(
-        self,
-        slide_service: SlideService,
-        layout_engine: LayoutEngine,
-        ai_client: AIClient,
-    ):
+    self,
+    slide_service: SlideService,
+    layout_engine: LayoutEngine,
+    ai_client: AIClient,
+    theme: BaseTheme,
+):
 
         self.slide_service = slide_service
 
@@ -68,10 +72,11 @@ class PresentationService(BaseService):
 
         self.ai_client = ai_client
 
+        self.theme = theme
+
         self.planner = PresentationPlanner()
 
         self.writer = ContentWriter()
-
     # -------------------------------------------------
 
     def initialize(self):
@@ -117,22 +122,25 @@ class PresentationService(BaseService):
         )
 
         #
-        # 4) Draft -> Editable Slides
+        # 4) Draft -> Presentation
         #
-
-        slides = self.layout_engine.build(
-            draft
+        
+        presentation = self.layout_engine.build(
+            draft,
+            self.theme,
         )
-
+        
+        
         #
         # 5) Store Slides
         #
-
+        
         self.slide_service.replace_all(
-            slides
+            presentation.slides
         )
-
-        return slides
+        
+        
+        return presentation
 
     # -------------------------------------------------
 

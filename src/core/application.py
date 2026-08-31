@@ -8,8 +8,8 @@ import sys
 import traceback
 from src.repositories.element_repository import ElementRepository
 from PySide6.QtWidgets import QApplication
-
-from src.core.container import ServiceContainer
+from themes.base_theme import BaseTheme
+from src.core.service_container import ServiceContainer
 from src.core.event_bus import EventBus
 
 from src.database.database_service import DatabaseService
@@ -232,7 +232,16 @@ class Application:
                 layout_engine,
             )
 
-        
+            # -----------------------------------------
+            # Theme
+            # -----------------------------------------
+
+            theme = BaseTheme()
+
+            self.services.register(
+                BaseTheme,
+                theme,
+            )
             # -----------------------------------------
             # Provider Manager
             # -----------------------------------------
@@ -266,11 +275,12 @@ class Application:
             # -----------------------------------------
 
             presentation_service = PresentationService(
-                slide_service,
-                layout_engine,
-                ai_client,
-            )
-
+            slide_service,
+            layout_engine,
+            ai_client,
+            theme,
+        )
+        
             presentation_service.initialize()
 
             self.services.register(

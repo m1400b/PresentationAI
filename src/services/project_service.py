@@ -1,165 +1,374 @@
 """
 PresentationAI
 
-Presentation Service
+Project Service
 """
 
 from __future__ import annotations
 
+import json
 
-from src.models.presentation import Presentation
-from src.models.presentation_plan import PresentationPlan
+from pathlib import Path
+from dataclasses import asdict
+from datetime import datetime
+
+from src.core.service import BaseService
+from src.models.project import Project
 
 
-class PresentationService:
+class ProjectService(BaseService):
     """
-    High level presentation workflow.
+    Responsible for Project lifecycle.
 
-    Responsibilities
-    ----------------
-    • Generate presentation
-    • Build presentation model
-    • Render output
-    • Manage pipeline
+        • Create
+        • Open
+        • Save
+        • Close
+        • Dirty State
     """
 
+    # -------------------------------------------------
 
     def __init__(
         self,
-        ai_client,
-        planner,
-        writer,
-        layout_engine,
-        renderer,
-        theme,
+        repository,
+        slide_service,
     ):
 
-        self.ai_client = ai_client
+        self.repository = repository
 
-        self.planner = planner
+        self.slide_service = slide_service
 
-        self.writer = writer
+        self.current_project: Project | None = None
 
-        self.layout_engine = layout_engine
+        self.is_dirty = False
 
-        self.renderer = renderer
+    # -------------------------------------------------
 
-        self.theme = theme
+    def initialize(self):
 
+        print("ProjectService.initialize()")
 
-        self.current_presentation = None
+        self.current_project = None
 
+        self.is_dirty = False
 
-    # =================================================
-    # Generate
-    # =================================================
+    # -------------------------------------------------
 
-    def generate(
-        self,
-        request,
-    ) -> Presentation:
-        """
-        Full AI pipeline.
-        """
+    def shutdown(self):
 
+        print("ProjectService.shutdown()")
 
-        result = self.ai_client.generate(
-            request
-        )
+        if self.project_is_open():
 
-
-        plan = self.planner.build_plan(
-            result,
-            request,
-        )
-
-
-        draft = self.writer.write(
-            plan
-        )
-
-
-        presentation = self.layout_engine.build(
-            draft,
-            self.theme,
-        )
-
-
-        self.current_presentation = presentation
-
-
-        return presentation
-
-
-
-    # =================================================
-    # Render
-    # =================================================
-
-    def render(
-        self,
-        output_path: str,
-    ) -> str:
-        """
-        Export current presentation.
-        """
-
-        if self.current_presentation is None:
-
-            raise RuntimeError(
-                "No presentation available."
-            )
-
-
-        return self.renderer.render(
-            self.current_presentation,
-            output_path,
-        )
-
-
-
-    # =================================================
-    # Build from plan
-    # =================================================
-
-    def build_from_plan(
-        self,
-        plan: PresentationPlan,
-    ):
-
-        draft = self.writer.write(
-            plan
-        )
-
-
-        presentation = self.layout_engine.build(
-            draft,
-            self.theme,
-        )
-
-
-        self.current_presentation = presentation
-
-
-        return presentation
-
-
+            self.save_project()
 
     # =================================================
     # Properties
     # =================================================
 
     @property
-    def presentation(
+    def project_name(self):
+
+        if self.current_project:
+
+            return self.current_project.name
+
+        return ""
+
+    # -------------------------------------------------
+
+    @property
+    def project_path(self):
+
+        if self.current_project:
+
+            return Path(self.current_project.path)
+
+        return None
+
+    # =================================================
+    # Dirty Flag
+    # =================================================
+
+    def mark_dirty(self):
+
+        self.is_dirty = True
+
+        if self.current_project:
+
+            self.current_project.modified_at = (
+                datetime.now().isoformat(
+                    timespec="seconds"
+                )
+            )
+
+    # -------------------------------------------------
+
+    def mark_saved(self):
+
+        self.is_dirty = False
+
+    # =================================================
+    # Create
+    # =================================================
+
+    def create_project(
+
         self,
+
+        project_name: str,
+
+        location: str,
+
+    ) -> Project:
+
+        print("Create Project")
+
+        project_path = Path(location) / project_name
+
+        project_path.mkdir(
+
+            parents=True,
+
+            exist_ok=True,
+
+        )
+
+        self._create_project_structure(
+            project_path
+        )
+
+        project = Project(
+
+            name=project_name,
+
+            path=str(project_path),
+
+        )
+
+        self.current_project = project
+
+        self.repository.add_recent_project(
+
+            project.name,
+
+            project.path,
+
+        )
+
+        self.slide_service.clear()
+
+        self.save_project()
+
+        print("Project created successfully.")
+
+        return project
+
+    # =================================================
+    # Open
+    # =================================================
+
+    def load_project(
+
+        self,
+
+        folder: str,
+
+    ) -> Project:
+
+        print("Loading project:")
+
+        print(folder)
+
+        project = self._read_project_file(folder)
+
+        self.current_project = project
+
+        self.repository.add_recent_project(
+
+            project.name,
+
+            project.path,
+
+        )
+
+        self.slide_service.load()
+
+        self.mark_saved()
+
+        print("Project loaded.")
+
+        return project
+
+    # =================================================
+    # Save
+    # =================================================
+
+    def save_project(self):
+
+        if not self.project_is_open():
+
+            return
+
+        self.current_project.slide_count = (
+
+            self.slide_service.count()
+
+        )
+
+        self.current_project.modified_at = (
+
+            datetime.now().isoformat(
+
+                timespec="seconds"
+
+            )
+
+        )
+
+        self._write_project_file()
+
+        self.mark_saved()
+
+    # =================================================
+    # Close
+    # =================================================
+
+    def close_project(self):
+
+        if self.project_is_open():
+
+            self.save_project()
+
+        self.current_project = None
+
+        self.is_dirty = False
+
+    # =================================================
+    # Status
+    # =================================================
+
+    def project_is_open(self) -> bool:
+
+        return self.current_project is not None
+
+    # =================================================
+    # Private
+    # =================================================
+
+    def _create_project_structure(
+
+        self,
+
+        project_path: Path,
+
     ):
 
-        return self.current_presentation
+        folders = (
 
+            "assets",
 
+            "images",
 
-    def clear(
+            "exports",
+
+            "cache",
+
+            "prompts",
+
+        )
+
+        for folder in folders:
+
+            (
+
+                project_path / folder
+
+            ).mkdir(
+
+                exist_ok=True
+
+            )
+
+    # -------------------------------------------------
+
+    def _write_project_file(self):
+
+        project_file = (
+
+            self.project_path
+
+            / "project.json"
+
+        )
+
+        print("Saving project:")
+
+        print(project_file)
+
+        with open(
+
+            project_file,
+
+            "w",
+
+            encoding="utf-8",
+
+        ) as file:
+
+            json.dump(
+
+                asdict(
+
+                    self.current_project
+
+                ),
+
+                file,
+
+                indent=4,
+
+                ensure_ascii=False,
+
+            )
+
+    # -------------------------------------------------
+
+    def _read_project_file(
+
         self,
-    ):
 
-        self.current_presentation = None
+        folder: str,
+
+    ) -> Project:
+
+        project_file = (
+
+            Path(folder)
+
+            / "project.json"
+
+        )
+
+        if not project_file.exists():
+
+            raise FileNotFoundError(
+
+                f"Project file not found:\n{project_file}"
+
+            )
+
+        with open(
+
+            project_file,
+
+            "r",
+
+            encoding="utf-8",
+
+        ) as file:
+
+            data = json.load(file)
+
+        return Project(**data)

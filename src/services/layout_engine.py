@@ -6,6 +6,7 @@ Layout Engine
 
 from __future__ import annotations
 
+
 from src.ai.layout_registry import (
     LayoutRegistry,
 )
@@ -14,8 +15,8 @@ from src.models.presentation import (
     Presentation,
 )
 
-from src.models.presentation_plan import (
-    PresentationPlan,
+from src.models.presentation_draft import (
+    PresentationDraft,
 )
 
 from themes.base_theme import (
@@ -25,9 +26,10 @@ from themes.base_theme import (
 
 class LayoutEngine:
     """
-    Converts a PresentationPlan
+    Converts PresentationDraft
     into a Presentation.
     """
+
 
     # -------------------------------------------------
 
@@ -38,6 +40,7 @@ class LayoutEngine:
 
         self._registry = registry
 
+
     # -------------------------------------------------
 
     @property
@@ -47,115 +50,113 @@ class LayoutEngine:
 
         return self._registry
 
+
     # -------------------------------------------------
 
     def build(
         self,
-        plan: PresentationPlan,
+        draft: PresentationDraft,
         theme: BaseTheme,
     ) -> Presentation:
         """
-        Builds a Presentation.
+        Builds final Presentation.
         """
 
         presentation = Presentation()
 
-        presentation.title = plan.title
 
-        presentation.theme = theme.copy()
+        presentation.title = (
+            draft.title
+        )
 
-        for planned_slide in plan.slides:
+
+        presentation.theme = (
+            theme.copy()
+        )
+
+
+        for draft_slide in draft.slides:
 
             slide = self.build_slide(
-
-                planned_slide,
-
+                draft_slide,
                 theme,
-
             )
 
             presentation.add_slide(
-
                 slide
-
             )
 
+
         return presentation
-        # -------------------------------------------------
-    # Slide Builder
+
+
+    # -------------------------------------------------
+    # Slide
     # -------------------------------------------------
 
     def build_slide(
         self,
-        planned_slide,
+        draft_slide,
         theme: BaseTheme,
     ):
         """
         Builds a single slide.
         """
 
-        builder = self._registry.find_builder(
 
-            planned_slide
-
+        builder = (
+            self._registry.find_builder(
+                draft_slide
+            )
         )
+
 
         return builder.build(
-
-            planned_slide,
-
-            theme,
-
+            draft_slide,
         )
+
 
     # -------------------------------------------------
 
     def can_build(
         self,
-        planned_slide,
+        draft_slide,
     ) -> bool:
         """
-        Returns True if a suitable
-        builder exists.
+        Checks if layout exists.
         """
 
         try:
 
             self._registry.find_builder(
-
-                planned_slide
-
+                draft_slide
             )
 
             return True
 
+
         except Exception:
 
             return False
+
 
     # -------------------------------------------------
 
     def available_layouts(
         self,
     ) -> list[str]:
-        """
-        Returns all registered layouts.
-        """
 
         return self._registry.names()
-    
-        # -------------------------------------------------
-    # Utilities
+
+
     # -------------------------------------------------
 
     def clear(
         self,
     ) -> None:
-        """
-        Clears the registry.
-        """
 
         self._registry.clear()
+
 
     # -------------------------------------------------
 
@@ -163,38 +164,20 @@ class LayoutEngine:
         self,
         registry: LayoutRegistry,
     ) -> None:
-        """
-        Replaces the current registry.
-        """
 
         self._registry = registry
+
 
     # -------------------------------------------------
 
     def __len__(
         self,
-    ) -> int:
+    ):
 
         return len(
             self._registry
         )
 
-    # -------------------------------------------------
-
-    def __contains__(
-        self,
-        layout: str,
-    ) -> bool:
-
-        return (
-
-            layout.lower()
-
-            in
-
-            self._registry
-
-        )
 
     # -------------------------------------------------
 
@@ -203,9 +186,6 @@ class LayoutEngine:
     ) -> str:
 
         return (
-
             f"<LayoutEngine "
-
             f"layouts={len(self)}>"
-
         )

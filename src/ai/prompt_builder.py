@@ -6,10 +6,12 @@ Prompt Builder
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from src.ai.prompt_request import (
     PromptRequest,
 )
-from dataclasses import dataclass
+
 
 @dataclass(slots=True)
 class PromptBundle:
@@ -18,18 +20,22 @@ class PromptBundle:
     """
 
     system_prompt: str
-
     user_prompt: str
-
     response_schema: str
+
 
 class PromptBuilder:
     """
-    Builds AI prompts from
-    PromptRequest objects.
+    Builds AI prompts from PromptRequest objects.
+
+    PromptBuilder is intentionally kept independent
+    from specific AI providers.
     """
 
     # -------------------------------------------------
+    # Main
+    # -------------------------------------------------
+
     def build(
         self,
         request: PromptRequest,
@@ -39,21 +45,19 @@ class PromptBuilder:
         """
 
         return PromptBundle(
-
             system_prompt=self.build_system_prompt(
                 request,
             ),
-
             user_prompt=self.build_user_prompt(
                 request,
             ),
-
             response_schema=self.build_output_format(
                 request,
             ),
-
         )
-    
+
+    # -------------------------------------------------
+    # System Prompt
     # -------------------------------------------------
 
     def build_system_prompt(
@@ -68,11 +72,12 @@ class PromptBuilder:
             "You are an expert presentation designer.\n"
             "Create professional, structured and visually "
             "balanced presentations.\n"
+            "Follow the requested topic, language, audience "
+            "and theme.\n"
             "Always return valid JSON only.\n"
-            "Do not include markdown, explanations or "
-            "additional text."
+            "Do not include Markdown, explanations or "
+            "additional text outside the JSON object."
         )
-        # -------------------------------------------------
 
     # -------------------------------------------------
     # User Prompt
@@ -83,7 +88,8 @@ class PromptBuilder:
         request: PromptRequest,
     ) -> str:
         """
-        Builds the user prompt.
+        Builds the user prompt from the current
+        PromptRequest contract.
         """
 
         lines: list[str] = []
@@ -100,13 +106,6 @@ class PromptBuilder:
             f"Topic: {request.topic}"
         )
 
-        if request.prompt:
-
-            lines.append(
-                f"Additional Instructions: "
-                f"{request.prompt}"
-            )
-
         lines.append(
             f"Slide Count: {request.slide_count}"
         )
@@ -116,15 +115,8 @@ class PromptBuilder:
         )
 
         lines.append(
-            f"Audience: {request.audience}"
-        )
-
-        lines.append(
-            f"Purpose: {request.purpose}"
-        )
-
-        lines.append(
-            f"Style: {request.style}"
+            f"Audience: "
+            f"{request.audience or 'General audience'}"
         )
 
         lines.append(
@@ -132,7 +124,23 @@ class PromptBuilder:
         )
 
         # -------------------------------------------------
-        # AI Configuration
+        # Additional Notes
+        # -------------------------------------------------
+
+        if request.has_notes:
+
+            lines.append("")
+
+            lines.append(
+                "ADDITIONAL NOTES"
+            )
+
+            lines.append(
+                request.notes
+            )
+
+        # -------------------------------------------------
+        # Provider Configuration
         # -------------------------------------------------
 
         lines.append("")
@@ -146,182 +154,35 @@ class PromptBuilder:
         )
 
         lines.append(
-            f"Model: {request.model or 'Auto'}"
+            "Online Providers: "
+            f"{'Allowed' if request.online_enabled else 'Disabled'}"
         )
 
         lines.append(
-            f"Creativity: {request.creativity}"
-        )
-
-        lines.append(
-            f"Temperature: {request.temperature}"
-        )
-
-        lines.append(
-            f"Maximum Tokens: {request.max_tokens}"
+            "Offline Only: "
+            f"{'Yes' if request.offline_only else 'No'}"
         )
 
         # -------------------------------------------------
-        # Content Requirements
+        # Metadata
         # -------------------------------------------------
 
-        lines.append("")
-
-        lines.append(
-            "CONTENT REQUIREMENTS"
-        )
-
-        if request.include_images:
-
-            lines.append(
-                "- Include image suggestions."
-            )
-
-        if request.include_charts:
-
-            lines.append(
-                "- Include charts where appropriate."
-            )
-
-        if request.include_tables:
-
-            lines.append(
-                "- Include tables where appropriate."
-            )
-
-        if request.include_notes:
-
-            lines.append(
-                "- Generate speaker notes."
-            )
-
-        if request.include_references:
-
-            lines.append(
-                "- Include references."
-            )
-
-            lines.append(
-                f"- Citation style: "
-                f"{request.citation_style}"
-            )
-
-        if request.include_agenda:
-
-            lines.append(
-                "- Include an agenda slide."
-            )
-
-        if request.include_summary:
-
-            lines.append(
-                "- Include a summary slide."
-            )
-
-        if request.include_thankyou:
-
-            lines.append(
-                "- Include a final thank-you slide."
-            )
-
-        # -------------------------------------------------
-        # Visual Requirements
-        # -------------------------------------------------
-
-        lines.append("")
-
-        lines.append(
-            "VISUAL REQUIREMENTS"
-        )
-
-        if request.generate_images:
-
-            lines.append(
-                "- Generate image prompts "
-                "for relevant slides."
-            )
-
-            lines.append(
-                f"- Image provider: "
-                f"{request.image_provider}"
-            )
-
-        if request.chart_style:
-
-            lines.append(
-                f"- Chart style: "
-                f"{request.chart_style}"
-            )
-
-        if request.use_branding:
-
-            lines.append(
-                "- Apply company branding."
-            )
-
-        if request.use_company_template:
-
-            lines.append(
-                "- Use the company presentation template."
-            )
-
-        # -------------------------------------------------
-        # Data Sources
-        # -------------------------------------------------
-
-        lines.append("")
-
-        lines.append(
-            "DATA SOURCES"
-        )
-
-        if request.use_local_documents:
-
-            lines.append(
-                "- Local documents may be used "
-                "as source material."
-            )
-
-        if request.search_web:
-
-            lines.append(
-                "- Web search is allowed "
-                "for additional information."
-            )
-
-        # -------------------------------------------------
-        # Language / Direction
-        # -------------------------------------------------
-
-        lines.append("")
-
-        lines.append(
-            "LANGUAGE AND DIRECTION"
-        )
-
-        lines.append(
-            f"- RTL: "
-            f"{'Yes' if request.rtl else 'No'}"
-        )
-
-        # -------------------------------------------------
-        # Additional Notes
-        # -------------------------------------------------
-
-        if request.extra:
+        if request.metadata:
 
             lines.append("")
 
             lines.append(
-                "ADDITIONAL REQUIREMENTS"
+                "ADDITIONAL CONFIGURATION"
             )
 
-            lines.append(
-                request.extra
-            )
+            for key, value in request.metadata.items():
+
+                lines.append(
+                    f"{key}: {value}"
+                )
 
         # -------------------------------------------------
-        # Output
+        # Output Requirements
         # -------------------------------------------------
 
         lines.append("")
@@ -339,8 +200,27 @@ class PromptBuilder:
         )
 
         lines.append(
-            "- Do not add explanations "
-            "before or after the JSON."
+            "- Do not add explanations before or after JSON."
+        )
+
+        lines.append(
+            "- Generate exactly the requested number of slides."
+        )
+
+        lines.append(
+            "- Every slide must have a layout and title."
+        )
+
+        lines.append(
+            "- Content must be an array of strings."
+        )
+
+        lines.append(
+            "- Use image_prompt when a visual is appropriate."
+        )
+
+        lines.append(
+            "- Use speaker_notes when useful."
         )
 
         lines.append("")
@@ -354,7 +234,7 @@ class PromptBuilder:
         return "\n".join(
             lines
         )
-    
+
     # -------------------------------------------------
     # Output Format
     # -------------------------------------------------
@@ -374,7 +254,7 @@ Return a JSON object using exactly this structure:
     "title": "Presentation title",
     "slides": [
         {
-            "layout": "Title Slide",
+            "layout": "Title",
             "title": "Slide title",
             "subtitle": "Slide subtitle",
             "content": [
@@ -401,40 +281,42 @@ Rules:
 - Do not add fields outside this structure.
 - Return valid JSON only.
 """
-    
+
+    # -------------------------------------------------
+    # Messages
+    # -------------------------------------------------
+
     def build_messages(
         self,
         request: PromptRequest,
     ) -> list[dict[str, str]]:
         """
-        Builds chat messages for
-        AI providers.
+        Builds chat messages for AI providers.
         """
 
         return [
-
             {
                 "role": "system",
                 "content": self.build_system_prompt(
                     request,
                 ),
             },
-
             {
                 "role": "user",
                 "content": self.build_user_prompt(
                     request,
                 ),
             },
-
         ]
 
+    # -------------------------------------------------
+    # Shortcut
     # -------------------------------------------------
 
     def __call__(
         self,
         request: PromptRequest,
-    ) -> str:
+    ) -> PromptBundle:
         """
         Shortcut for build().
         """
@@ -444,9 +326,12 @@ Rules:
         )
 
     # -------------------------------------------------
+    # Representation
+    # -------------------------------------------------
 
     def __repr__(
         self,
     ) -> str:
 
         return "<PromptBuilder>"
+

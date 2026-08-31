@@ -78,10 +78,10 @@ class PresentationPlanner:
         plan = PresentationPlan(
             title=title,
             prompt=(
-                request.prompt
-                if request is not None
-                else ""
-            ),
+    request.notes
+    if request is not None
+    else ""
+),
             language=(
                 request.language
                 if request is not None
@@ -92,11 +92,7 @@ class PresentationPlanner:
                 if request is not None
                 else ""
             ),
-            tone=(
-                request.style
-                if request is not None
-                else "Professional"
-            ),
+            tone="Professional",
             theme=(
                 request.theme
                 if request is not None
@@ -107,11 +103,7 @@ class PresentationPlanner:
                 if request is not None
                 else "Auto"
             ),
-            model=(
-                request.model
-                if request is not None
-                else ""
-            ),
+            model="",
         )
 
         # -------------------------------------------------
@@ -309,6 +301,7 @@ class PresentationPlanner:
             objective=title,
             layout=layout,
         )
+        
 
         # -------------------------------------------------
         # Optional Data
@@ -321,7 +314,7 @@ class PresentationPlanner:
             )
         )
 
-        slide.bullets = bullets
+        slide.content = bullets
 
         slide.image_prompt = image_prompt
 
@@ -337,25 +330,26 @@ class PresentationPlanner:
             )
         )
 
-        slide.chart_required = (
-            self._detect_chart(
+        slide.estimated_bullets = (
+            self._estimate_bullets(
                 bullets
             )
         )
+        
+        slide.chart_required = (
+    self._detect_chart(
+        bullets
+    )
+)
 
         slide.table_required = (
             self._detect_table(
                 bullets
             )
         )
-
-        slide.estimated_bullets = (
-            self._estimate_bullets(
-                bullets
-            )
-        )
-
+        
         return slide
+        
 
     # -------------------------------------------------
     # Bullets
